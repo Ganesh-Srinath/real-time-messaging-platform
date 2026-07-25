@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: messaging-backend
+    container_name: messaging-backend
+    restart: unless-stopped
+
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - .env
+
+    depends_on:
+      mysql:
+        condition: service_started
+
+    networks:
+      - messaging-network
+
+  mysql:
+    image: mysql:8.4
+    container_name: messaging-db
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: Gsk@2605
+      MYSQL_DATABASE: message_system
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+    networks:
+      - messaging-network
+
+volumes:
+  mysql_data:
+
+networks:
+  messaging-network:
+    driver: bridge

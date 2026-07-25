@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import waitForDatabase from "./utils/waitForDatabase.js";
 
 dotenv.config();
 
@@ -19,14 +20,7 @@ const PORT =
 
 try {
 
-  const connection =
-    await pool.getConnection();
-
-  console.log(
-    "Connection established"
-  );
-
-  connection.release();
+  await waitForDatabase();
 
   const server =
     http.createServer(app);
