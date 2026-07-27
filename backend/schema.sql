@@ -1,6 +1,5 @@
-CREATE DATABASE IF NOT EXISTS discord_clone;
-
-USE discord_clone;
+CREATE DATABASE IF NOT EXISTS message_system;
+USE message_system;
 
 CREATE TABLE users (
     id CHAR(36) NOT NULL,
