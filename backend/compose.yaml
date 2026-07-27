@@ -27,7 +27,7 @@ services:
 
     environment:
       MYSQL_ROOT_PASSWORD: Gsk@2605
-      MYSQL_DATABASE: message_system
+      MYSQL_DATABASE: message-system
 
     volumes:
       - mysql_data:/var/lib/mysql
