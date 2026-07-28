@@ -1,8 +1,9 @@
 services:
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
+
     image: messaging-backend
     container_name: messaging-backend
     restart: unless-stopped
@@ -11,7 +12,7 @@ services:
       - "5000:5000"
 
     env_file:
-      - .env
+      - ./backend/.env
 
     depends_on:
       mysql:
