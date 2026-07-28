@@ -3,6 +3,7 @@ import {
   getMe,
   loginUser,
   registerUser,
+  logoutUser
 } from "../controllers/authController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
@@ -22,6 +23,11 @@ router.post(
 router.post(
   "/login",
   loginUser
+);
+
+router.post(
+  "/logout",
+  logoutUser
 );
 
 export default router;
