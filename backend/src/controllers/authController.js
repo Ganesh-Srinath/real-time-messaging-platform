@@ -28,28 +28,26 @@ export const registerUser = async (
 
 };
 
-export const loginUser = async (
-  req,
-  res
-) => {
-
+export const loginUser = async (req, res) => {
   try {
+    const { user, token } = await login(req.body);
 
-    const response =
-      await login(req.body);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
 
-    return res.status(200).json(
-      response
-    );
-
+    return res.status(200).json({
+      message: "Login Successful",
+      user,
+    });
   } catch (error) {
-
     return res.status(400).json({
       message: error.message,
     });
-
   }
-
 };
 
 export const getMe = async (
